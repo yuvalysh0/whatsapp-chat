@@ -16,6 +16,7 @@ export class SummarizeService {
     options?: {
       readonly maxChatChars?: number;
       readonly groupName?: string;
+      readonly daytimeOnly?: boolean;
     }
   ): Observable<SummarizeResponse> {
     const body = new FormData();
@@ -27,6 +28,11 @@ export class SummarizeService {
     const g = options?.groupName?.trim();
     if (g) {
       body.append("groupName", g);
+    }
+    if (options?.daytimeOnly === true) {
+      body.append("dayStartHour", "5");
+    } else if (options?.daytimeOnly === false) {
+      body.append("dayStartHour", "off");
     }
     return this.http.post<SummarizeResponse>("/api/summarize", body);
   }

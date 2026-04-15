@@ -7,6 +7,31 @@ import { fileURLToPath } from "url";
 import { extractWhatsappChatName } from "./lib/whatsapp-chat-name.js";
 import { summarizeWhatsappText } from "./lib/summarize.js";
 
+/**
+ * @param {import("express").Request} req
+ * @returns {number | undefined} minutes from midnight, or undefined = no time-of-day filter
+ */
+function resolveDayStartMinute(req) {
+    const b = req.body?.dayStartHour;
+    if (b === "off") {
+        return undefined;
+    }
+    if (b !== undefined && b !== null && String(b).trim() !== "") {
+        const h = Number.parseInt(String(b), 10);
+        if (Number.isFinite(h) && h >= 0 && h <= 23) {
+            return h * 60;
+        }
+    }
+    const envH = process.env.SUMMARY_DAY_START_HOUR;
+    if (envH !== undefined && String(envH).trim() !== "") {
+        const h = Number.parseInt(String(envH), 10);
+        if (Number.isFinite(h) && h >= 0 && h <= 23) {
+            return h * 60;
+        }
+    }
+    return undefined;
+}
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const angularDir = path.join(__dirname, "web", "dist", "web", "browser");
 const angularIndex = path.join(angularDir, "index.html");
@@ -43,9 +68,13 @@ app.post("/api/summarize", upload.single("file"), async (req, res) => {
         const maxChatChars = req.body.maxChatChars
             ? Number.parseInt(String(req.body.maxChatChars), 10)
             : undefined;
+        const dayStartMinute = resolveDayStartMinute(req);
         const summary = await summarizeWhatsappText(raw, {
             ...(Number.isFinite(maxChatChars) && maxChatChars > 0
                 ? { maxChatChars }
+                : {}),
+            ...(dayStartMinute != null
+                ? { dayStartMinuteFromMidnight: dayStartMinute }
                 : {}),
         });
         let manualName = String(

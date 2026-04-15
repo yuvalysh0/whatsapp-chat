@@ -21,6 +21,8 @@ export class ChatSummaryPageService {
   readonly chatName = signal<string | null>(null);
   readonly error = signal<string | null>(null);
   readonly maxChars = signal<number | undefined>(undefined);
+  /** When true, only messages from 05:00 (local export time) until end of day are summarized. */
+  readonly daytimeOnly = signal(true);
   readonly groupNameOverride = signal("");
 
   onGroupNameInput(event: Event): void {
@@ -49,6 +51,10 @@ export class ChatSummaryPageService {
     this.maxChars.set(Number.isNaN(v) ? undefined : v);
   }
 
+  onDaytimeOnlyChange(event: Event): void {
+    this.daytimeOnly.set((event.target as HTMLInputElement).checked);
+  }
+
   async generate(): Promise<void> {
     const file = this.selectedFile();
     if (!file) {
@@ -64,6 +70,7 @@ export class ChatSummaryPageService {
         this.api.summarize(file, {
           maxChatChars: this.maxChars(),
           groupName: this.groupNameOverride().trim() || undefined,
+          daytimeOnly: this.daytimeOnly(),
         })
       );
       this.summary.set(res.summary);

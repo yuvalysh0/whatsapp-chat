@@ -25,3 +25,23 @@
     flex-shrink: 0;
   }
 }
+
+.wac-daytime {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  cursor: pointer;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: var(--muted);
+
+  &__input {
+    margin: 0.2rem 0 0;
+    flex-shrink: 0;
+    accent-color: var(--accent);
+  }
+
+  &__label {
+    user-select: none;
+  }
+}

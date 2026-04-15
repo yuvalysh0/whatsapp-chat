@@ -14,6 +14,18 @@
     </label>
   </div>
 
+  <div class="wac-settings__row wac-settings__row--full">
+    <label class="wac-daytime">
+      <input
+        type="checkbox"
+        class="wac-daytime__input"
+        [checked]="page.daytimeOnly()"
+        (change)="page.onDaytimeOnlyChange($event)"
+      />
+      <span class="wac-daytime__label">{{ "settings.daytimeOnly" | translate }}</span>
+    </label>
+  </div>
+
   <div class="wac-settings__row wac-settings__row--actions">
     <label class="wac-field">
       <span class="wac-field__label">{{ "settings.maxCharsLabel" | translate }}</span>

@@ -28,6 +28,8 @@ export const MESSAGES: Record<
     "settings.maxCharsPlaceholder": "ברירת מחדל מהשרת",
     "settings.generate": "צור סיכום",
     "settings.processing": "מעבד…",
+    "settings.daytimeOnly":
+      "רק הודעות מ־05:00 עד סוף היום (לפי השעה בקובץ הייצוא)",
 
     "history.title": "סיכומים אחרונים",
     "history.clearAll": "נקה הכל",
@@ -78,6 +80,8 @@ export const MESSAGES: Record<
     "settings.maxCharsPlaceholder": "Server default",
     "settings.generate": "Summarize",
     "settings.processing": "Working…",
+    "settings.daytimeOnly":
+      "Only messages from 5:00 until end of day (export local time)",
 
     "history.title": "Recent summaries",
     "history.clearAll": "Clear all",
