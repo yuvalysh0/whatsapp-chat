@@ -1,0 +1,43 @@
+@use "../styles/wac-shared";
+
+:host {
+  display: block;
+}
+
+.wac-upload {
+  &__zone {
+    border: 2px dashed var(--border-strong);
+    border-radius: var(--radius-lg);
+    padding: 2rem 1.25rem;
+    text-align: center;
+    cursor: pointer;
+    background: var(--surface-elevated);
+    box-shadow: var(--shadow-sm);
+    transition:
+      border-color 0.2s ease,
+      background 0.2s ease,
+      box-shadow 0.2s ease;
+
+    &:hover,
+    &:focus-visible {
+      border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
+      box-shadow: var(--shadow-md);
+      outline: none;
+    }
+  }
+
+  &__hint {
+    margin: 0;
+  }
+
+  &__file-name {
+    margin: 0.75rem 0 0;
+    font-weight: 600;
+    word-break: break-all;
+  }
+
+  &__placeholder {
+    margin: 0.75rem 0 0;
+    color: var(--muted);
+  }
+}

@@ -1,0 +1,27 @@
+@use "../styles/wac-shared";
+
+:host {
+  display: block;
+}
+
+.wac-settings {
+  &__row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: flex-end;
+    margin-top: 1.25rem;
+
+    &--full {
+      align-items: stretch;
+    }
+
+    &--actions {
+      align-items: flex-end;
+    }
+  }
+
+  &__submit {
+    flex-shrink: 0;
+  }
+}

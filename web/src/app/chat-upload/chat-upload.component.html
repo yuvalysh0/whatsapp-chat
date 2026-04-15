@@ -1,0 +1,27 @@
+<div class="wac-upload">
+  <div
+    class="wac-upload__zone"
+    tabindex="0"
+    (dragover)="page.onDragOver($event)"
+    (drop)="page.onDrop($event)"
+    (click)="fileInput.click()"
+    (keydown.enter)="fileInput.click()"
+  >
+    <input
+      #fileInput
+      type="file"
+      accept=".txt,text/plain"
+      class="wac-upload__input wac-visually-hidden"
+      (change)="page.onFilePicked($event)"
+    />
+    <p class="wac-upload__hint">
+      <strong>{{ "upload.hintBold" | translate }}</strong>
+      {{ "upload.hintRest" | translate }}
+    </p>
+    @if (page.fileLabel(); as name) {
+      <p class="wac-upload__file-name">{{ name }}</p>
+    } @else {
+      <p class="wac-upload__placeholder">{{ "upload.noFile" | translate }}</p>
+    }
+  </div>
+</div>

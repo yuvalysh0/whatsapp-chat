@@ -1,0 +1,35 @@
+<div class="wac-result">
+  @if (page.error(); as err) {
+    <p class="wac-result__error" role="alert">{{ err }}</p>
+  }
+
+  @if (page.summary(); as text) {
+    <section class="wac-result__summary" aria-live="polite">
+      @if (page.chatName(); as chat) {
+        <p class="wac-result__chat-title">{{ chat }}</p>
+      }
+      <div class="wac-result__summary-head">
+        <h2 class="wac-result__heading">{{ "result.summary" | translate }}</h2>
+        <button
+          type="button"
+          class="wac-button wac-button--ghost wac-result__copy"
+          (click)="copySummary()"
+          [attr.aria-label]="'result.copyAria' | translate"
+        >
+          @switch (copyFeedback()) {
+            @case ("copied") {
+              {{ "result.copied" | translate }}
+            }
+            @case ("error") {
+              {{ "result.copyError" | translate }}
+            }
+            @default {
+              {{ "result.copy" | translate }}
+            }
+          }
+        </button>
+      </div>
+      <pre class="wac-result__text">{{ text }}</pre>
+    </section>
+  }
+</div>

@@ -1,0 +1,52 @@
+@if (history.count() > 0) {
+  <section class="wac-history" aria-labelledby="wac-history-title">
+    <div class="wac-history__header">
+      <h2 id="wac-history-title" class="wac-history__title">
+        {{ "history.title" | translate }}
+      </h2>
+      <button
+        type="button"
+        class="wac-button wac-button--ghost"
+        (click)="history.clear()"
+      >
+        {{ "history.clearAll" | translate }}
+      </button>
+    </div>
+    <ul class="wac-history__list">
+      @for (item of history.items(); track item.id) {
+        <li class="wac-history__item">
+          <button
+            type="button"
+            class="wac-history__open"
+            (click)="page.openSavedSummary(item)"
+          >
+            <span class="wac-history__name">{{
+              item.chatName || item.fileName
+            }}</span>
+            @if (item.chatName && item.fileName !== item.chatName) {
+              <span class="wac-history__file">{{ item.fileName }}</span>
+            }
+            <span class="wac-history__meta">{{
+              item.createdAt
+                | date
+                  : i18n.dateTimePattern()
+                  : undefined
+                  : i18n.dateTimeLocaleId()
+            }}</span>
+          </button>
+          <button
+            type="button"
+            class="wac-button wac-button--icon"
+            [attr.aria-label]="
+              'history.deleteAriaName'
+                | translate: { name: item.chatName || item.fileName }
+            "
+            (click)="history.remove(item.id)"
+          >
+            ✕
+          </button>
+        </li>
+      }
+    </ul>
+  </section>
+}

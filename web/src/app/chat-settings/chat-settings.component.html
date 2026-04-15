@@ -1,0 +1,44 @@
+<div class="wac-settings">
+  <div class="wac-settings__row wac-settings__row--full">
+    <label class="wac-field wac-field--grow">
+      <span class="wac-field__label">{{ "settings.groupLabel" | translate }}</span>
+      <input
+        type="text"
+        class="wac-field__control"
+        dir="auto"
+        autocomplete="off"
+        [placeholder]="'settings.groupPlaceholder' | translate"
+        [value]="page.groupNameOverride()"
+        (input)="page.onGroupNameInput($event)"
+      />
+    </label>
+  </div>
+
+  <div class="wac-settings__row wac-settings__row--actions">
+    <label class="wac-field">
+      <span class="wac-field__label">{{ "settings.maxCharsLabel" | translate }}</span>
+      <input
+        type="number"
+        class="wac-field__control"
+        min="2000"
+        max="100000"
+        step="1000"
+        [placeholder]="'settings.maxCharsPlaceholder' | translate"
+        [value]="page.maxChars() ?? ''"
+        (input)="page.onMaxCharsInput($event)"
+      />
+    </label>
+    <button
+      type="button"
+      class="wac-button wac-button--primary wac-settings__submit"
+      [disabled]="page.loading() || !page.selectedFile()"
+      (click)="page.generate()"
+    >
+      @if (page.loading()) {
+        {{ "settings.processing" | translate }}
+      } @else {
+        {{ "settings.generate" | translate }}
+      }
+    </button>
+  </div>
+</div>

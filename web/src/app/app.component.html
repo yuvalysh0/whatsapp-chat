@@ -1,0 +1,32 @@
+<div class="wac-page">
+  <main class="wac-shell">
+    <header class="wac-shell__header">
+      <h1 class="wac-shell__title">{{ "app.title" | translate }}</h1>
+      <wac-app-menu class="wac-shell__menu" />
+    </header>
+
+    <p class="wac-shell__lead">
+      {{ "app.lead" | translate }}
+      <code class="wac-shell__code">_chat.txt</code>
+      {{ "app.leadAfterCode" | translate }}
+    </p>
+
+    <wac-chat-upload />
+    <wac-chat-settings />
+    <wac-chat-history />
+    <wac-chat-result />
+  </main>
+
+  <footer class="wac-page__footer">
+    <p class="wac-page__credit">
+      {{ "app.footerBuilt" | translate }}
+      <a
+        class="wac-page__link"
+        href="https://www.linkedin.com/in/yuvalshalom"
+        target="_blank"
+        rel="noopener noreferrer"
+        >{{ "app.footerAuthor" | translate }}</a>
+      · {{ year }}
+    </p>
+  </footer>
+</div>

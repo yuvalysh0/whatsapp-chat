@@ -1,0 +1,9 @@
+services:
+  app:
+    build: .
+    # Host port defaults to 3080 so 3000 stays free for `npm run dev` / other tools.
+    ports:
+      - "${HOST_PORT:-3080}:3000"
+    env_file:
+      - .env
+    restart: unless-stopped

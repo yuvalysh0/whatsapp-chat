@@ -1,0 +1,58 @@
+@use "../styles/wac-shared";
+
+:host {
+  display: block;
+}
+
+.wac-result {
+  &__error {
+    margin-top: 1rem;
+    color: var(--danger);
+  }
+
+  &__summary {
+    margin-top: 1.75rem;
+  }
+
+  &__chat-title {
+    margin: 0 0 0.35rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1.35;
+    word-break: break-word;
+  }
+
+  &__summary-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  &__heading {
+    font-size: 1.1rem;
+    margin: 0;
+  }
+
+  &__copy {
+    flex-shrink: 0;
+    font-size: 0.9rem;
+    padding: 0.4rem 0.75rem;
+  }
+
+  &__text {
+    margin: 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+    padding: 1.1rem 1.15rem;
+    border-radius: var(--radius-md);
+    background: var(--surface-elevated);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    line-height: 1.55;
+    font-family: var(--font-sans);
+  }
+}

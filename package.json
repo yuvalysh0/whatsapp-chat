@@ -1,0 +1,36 @@
+{
+  "name": "whatsapp-chat",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently -k -n api,web -c blue,magenta \"npm run start:api\" \"npm run start:web\"",
+    "start": "node server.js",
+    "start:api": "node server.js",
+    "start:web": "npm run start --prefix web",
+    "start:prod": "npm run build:web && node server.js",
+    "build:web": "npm run build --prefix web",
+    "build": "npm run build:web",
+    "docker:build": "docker build -t whatsapp-chat .",
+    "docker:up": "docker compose up --build",
+    "docker:run": "docker run --rm -p 3080:3000 --env-file .env --name whatsapp-chat whatsapp-chat",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "multer": "^2.1.1"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}

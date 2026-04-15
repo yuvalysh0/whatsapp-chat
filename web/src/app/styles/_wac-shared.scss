@@ -1,0 +1,110 @@
+// Shared BEM primitives for wac-* (WhatsApp chat UI) components
+
+.wac-button {
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 0.55rem 1.15rem;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    transform 0.1s ease;
+
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+
+  &:active:not(:disabled) {
+    transform: scale(0.98);
+  }
+
+  &--primary {
+    background: var(--accent);
+    color: var(--on-accent);
+    box-shadow: var(--shadow-sm);
+
+    &:hover:not(:disabled) {
+      filter: brightness(1.06);
+    }
+  }
+
+  &--ghost {
+    background: var(--surface-elevated);
+    color: var(--muted);
+    border: 1px solid var(--border);
+    font-weight: 500;
+    box-shadow: var(--shadow-sm);
+
+    &:hover:not(:disabled) {
+      color: var(--text);
+      background: var(--surface-hover);
+      border-color: var(--border-strong);
+    }
+  }
+
+  &--icon {
+    padding: 0.35rem 0.55rem;
+    min-width: 2rem;
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid transparent;
+    font-weight: 700;
+
+    &:hover:not(:disabled) {
+      color: var(--danger);
+      border-color: var(--border);
+    }
+  }
+}
+
+.wac-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  flex: 1;
+  min-width: 12rem;
+
+  &__label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--muted);
+  }
+
+  &__control {
+    padding: 0.55rem 0.75rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    font: inherit;
+    transition:
+      border-color 0.15s ease,
+      box-shadow 0.15s ease;
+
+    &:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent);
+    }
+  }
+
+  &--grow {
+    flex: 1 1 100%;
+    min-width: min(100%, 18rem);
+  }
+}
+
+.wac-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}

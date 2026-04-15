@@ -1,0 +1,24 @@
+<div
+  class="wac-locale-toggle"
+  role="group"
+  [attr.aria-label]="'lang.aria' | translate"
+>
+  <button
+    type="button"
+    class="wac-locale-toggle__btn"
+    [class.wac-locale-toggle__btn--active]="i18n.locale() === 'he'"
+    (click)="i18n.setLocale('he')"
+    [attr.aria-pressed]="i18n.locale() === 'he'"
+  >
+    {{ "lang.he" | translate }}
+  </button>
+  <button
+    type="button"
+    class="wac-locale-toggle__btn"
+    [class.wac-locale-toggle__btn--active]="i18n.locale() === 'en'"
+    (click)="i18n.setLocale('en')"
+    [attr.aria-pressed]="i18n.locale() === 'en'"
+  >
+    {{ "lang.en" | translate }}
+  </button>
+</div>
